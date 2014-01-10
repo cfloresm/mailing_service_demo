@@ -1,4 +1,4 @@
-package mx.com.prosa.app.mail.services;
+package mx.com.prosa.app.mail.services.impl;
 
 import java.util.HashMap;
 import java.util.Map;
