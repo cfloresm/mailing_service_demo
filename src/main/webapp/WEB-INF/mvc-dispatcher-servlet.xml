@@ -28,9 +28,16 @@
 	</bean>
 
 	<bean id="memoryStore" class="java.util.HashMap"/>
-	<bean id="authcService" class="mx.com.prosa.app.mail.services.AuthenticationServiceImpl"/>
-	<bean id="userService" class="mx.com.prosa.app.mail.services.UserServiceImpl" />
-	
+	<bean id="authcService" class="mx.com.prosa.app.mail.services.impl.AuthenticationServiceImpl"/>
+	<bean id="userService" class="mx.com.prosa.app.mail.services.impl.UserServiceImpl" />
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:smtp.properties</value>
+			</list>
+		</property>
+		<property name="ignoreUnresolvablePlaceholders" value="true"/>
+	</bean>
 </beans>
 
 
