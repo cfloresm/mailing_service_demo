@@ -42,15 +42,65 @@
 		}
 	}
 
-	$(document).on(
-			'change',
-			'.btn-file :file',
-			function() {
-				var input = $(this), numFiles = input.get(0).files ? input
-						.get(0).files.length : 1, label = input.val().replace(
-						/\\/g, '/').replace(/.*\//, '');
-				input.trigger('fileselect', [ numFiles, label ]);
-			});
+	function sendData() {
+		var jsonmail = {};
+		jsonmail.destinataries = mails;
+		jsonmail.subject = document.getElementById("mailSubject").value;
+		jsonmail.body = document.getElementById("mailBody").value;
+		console.log(JSON.stringify(jsonmail));
+
+		$.ajax({
+			type : "POST",
+			url : "sendmail",
+			contentType : "application/json",
+			data : JSON.stringify(jsonmail),
+			//data : "mails="+mails,  //multiple array, just add something like "&b="+b ...
+			success : function(response) {
+				// do something ... 
+				alery('Sent');
+			},
+			error : function(e) {
+				alert('Error X: ' + e);
+			}
+		});
+	}
+
+	var mails = [];
+	window.onload = function() {
+		var fileInput = document.getElementById('fileInput');
+		var fileDisplayArea = document.getElementById('fileDisplayArea');
+
+		fileInput.addEventListener('change', function(e) {
+			var file = fileInput.files[0];
+			var textType = /text.*/;
+
+			if (file.type.match(textType)) {
+				var reader = new FileReader();
+
+				reader.readAsText(file);
+
+				reader.onload = function(e) {
+					var maillines = "";
+					var lines = reader.result.split(/\n/);
+					;
+					for (var i = 0; i < lines.length; i++) {
+						if (/\S/.test(lines[i])) {
+							mails.push($.trim(lines[i]));
+							maillines = maillines + $.trim(lines[i]) + '\n';
+						}
+					}
+					fileDisplayArea.innerText = maillines;
+
+					//for (var i=0; i < mails.length; i++) {
+					//   alert(i+"-  "+mails[i]);
+					// }	
+				};
+
+			} else {
+				fileDisplayArea.innerText = "File not supported!"
+			}
+		});
+	}
 </script>
 
 <title>Log In</title>
@@ -85,10 +135,11 @@
 					</div>
 					<textarea id="mailDestinatary" rows="1"> </textarea>
 				</div>
-
 				<div id="csvFileChooser">
-					<span class="btn btn-default btn-file"> CSV File <input	type="file"> </span>
-					<br/> <br/>
+					<div>
+						Select a text file: <input type="file" id="fileInput">
+					</div>
+					<pre id="fileDisplayArea">	</pre>
 				</div>
 				<div>
 					<label class="control-label">Subject</label>
@@ -103,7 +154,7 @@
 
 				<div id="messageButton" class="control-group">
 					<input class="btn btn-large btn-primary" type="button"
-						onclick="sendMessage();" value="Send Mail" />
+						onclick="sendData();" value="Send Mail" />
 				</div>
 
 			</div>
