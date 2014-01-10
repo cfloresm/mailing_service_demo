@@ -1,7 +1,8 @@
 package mx.com.prosa.app.mail.controller;
 
 import mx.com.prosa.app.mail.beans.LoginForm;
-import mx.com.prosa.app.mail.beans.EmailInput;
+import mx.com.prosa.app.mail.beans.Mail;
+import mx.com.prosa.app.mail.beans.Signup;
 import mx.com.prosa.app.mail.beans.User;
 import mx.com.prosa.app.mail.services.impl.AuthenticationServiceImpl;
 import mx.com.prosa.app.mail.services.impl.EmailServiceImpl;
@@ -12,11 +13,17 @@ import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
 
 /**
  * Controller for web application .
@@ -31,7 +38,7 @@ public class WebAppController {
 	 */
 	@Autowired
 	UserServiceImpl userService;
-	
+
 	/**
 	 * Service for authentication
 	 */
@@ -44,7 +51,6 @@ public class WebAppController {
     @Autowired
 	EmailServiceImpl mailingService;
     
-	
 	/**
 	 * Get login view 
 	 * @param model
@@ -57,7 +63,7 @@ public class WebAppController {
 		model.addAttribute("loginForm", new LoginForm());
 		return "login";
 	}
-	
+
 	/**
 	 * Authentication user through 
 	 * @param loginForm
@@ -88,7 +94,7 @@ public class WebAppController {
 		
 		return "redirect:/mailing";
 	}
-	
+
 	/**
 	 * Implement logout method for 
 	 * @param model
@@ -111,10 +117,10 @@ public class WebAppController {
 	 */
 	@RequestMapping(value="/signin", method = RequestMethod.GET)
 	public String getUserForm(ModelMap model) {
-	    model.addAttribute("userForm", new User());
-	    return "register";
+		model.addAttribute("userForm", new User());
+		return "register";
 	}
-	
+
 	/**
 	 * Register a new user
 	 * @param userForm
@@ -138,7 +144,6 @@ public class WebAppController {
 		return "register";
 
 	}
-	
 	/**
 	 * Get mailing view
 	 * @param model
@@ -146,12 +151,38 @@ public class WebAppController {
 	 * @return
 	 * 			Mailing View
 	 */			
+	//	@RequestMapping(value="/mailing", method = RequestMethod.GET)
+	//	public String getMailingApp(ModelMap model) {
+	//		model.addAttribute("users", userService.getUserKeys());
+	//		model.addAttribute("mailInput", new EmailInput());
+	//		model.addAttribute("saludo", "Jajajjajaja!!");
+	//		return "mailing";
+	//	}
+
+	@RequestMapping(value="/sendmail", method = RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
+	public  @ResponseBody String postMails(@RequestBody Mail mail) throws JsonProcessingException {
+		
+		String username = "rvazquez";
+		String password = "ohpatosend";
+		
+//		System.out.println();
+//		System.out.println(mail.getDestinatary());
+//		System.out.println(mail.getSubject());
+//		System.out.println(mail.getBody());
+
+		
+		return "200";
+	}
+
+	@RequestMapping("/login")
+	public String index(Model model) {
+		model.addAttribute("signup", new Signup());
+		return "index";
+	}
+
 	@RequestMapping(value="/mailing", method = RequestMethod.GET)
 	public String getMailingApp(ModelMap model) {
-		model.addAttribute("users", userService.getUserKeys());
-		model.addAttribute("mailInput", new EmailInput());
-		return "mailing";
+		return "mailing2";
 	}
-	
 
 }
