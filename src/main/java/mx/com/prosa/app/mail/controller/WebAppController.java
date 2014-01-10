@@ -151,25 +151,30 @@ public class WebAppController {
 	 * @return
 	 * 			Mailing View
 	 */			
-	//	@RequestMapping(value="/mailing", method = RequestMethod.GET)
-	//	public String getMailingApp(ModelMap model) {
-	//		model.addAttribute("users", userService.getUserKeys());
-	//		model.addAttribute("mailInput", new EmailInput());
-	//		model.addAttribute("saludo", "Jajajjajaja!!");
-	//		return "mailing";
-	//	}
+	
+	@RequestMapping(value="/mailing", method = RequestMethod.GET)
+	public String getMailingApp(ModelMap model) {
+		model.addAttribute("saludo", "Jajajjajaja!!");
+		return "mailing2";
+	}
+
 
 	@RequestMapping(value="/sendmail", method = RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
 	public  @ResponseBody String postMails(@RequestBody Mail mail) throws JsonProcessingException {
 		
-		String username = "rvazquez";
-		String password = "ohpatosend";
+		//YA SE OBTUVIERON LOS DATOS DEL MAIL
 		
 //		System.out.println();
 //		System.out.println(mail.getDestinatary());
 //		System.out.println(mail.getSubject());
 //		System.out.println(mail.getBody());
 
+		for(String destinatary : mail.getDestinataries()){
+		    System.out.println(destinatary);
+		}
+		
+		System.out.println(mail.getSubject());
+		System.out.println(mail.getBody());
 		
 		return "200";
 	}
@@ -180,9 +185,6 @@ public class WebAppController {
 		return "index";
 	}
 
-	@RequestMapping(value="/mailing", method = RequestMethod.GET)
-	public String getMailingApp(ModelMap model) {
-		return "mailing2";
-	}
+
 
 }
