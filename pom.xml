@@ -8,7 +8,7 @@
 	<name>Mailing Service Demo  Webapp</name>
 
 	<properties>
-		<spring.version>3.2.3.RELEASE</spring.version>
+		<spring.version>3.1.2.RELEASE</spring.version>
 		<jackson.version>2.2.2</jackson.version>
 		<javax.mail-version>1.4.7</javax.mail-version>
 		<hibernate.version>4.1.12.Final</hibernate.version>
@@ -17,6 +17,12 @@
 	</properties>
 
 	<dependencies>
+		<!-- SendGrid dependencies -->
+		<dependency>
+			<groupId>com.sendgrid</groupId>
+			<artifactId>sendgrid-java</artifactId>
+			<version>0.1.2</version>
+		</dependency>
 
 		<!-- Spring 3 dependencies -->
 		<dependency>
