@@ -4,6 +4,7 @@ import mx.com.prosa.app.mail.beans.LoginForm;
 import mx.com.prosa.app.mail.beans.EmailInput;
 import mx.com.prosa.app.mail.beans.User;
 import mx.com.prosa.app.mail.services.impl.AuthenticationServiceImpl;
+import mx.com.prosa.app.mail.services.impl.EmailServiceImpl;
 import mx.com.prosa.app.mail.services.impl.UserServiceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,14 @@ public class WebAppController {
 	 */
 	@Autowired
 	AuthenticationServiceImpl authcService;
+	
+	/**
+	 * Service for mailing
+	 */
+    @Autowired
+	EmailServiceImpl mailingService;
     
+	
 	/**
 	 * Get login view 
 	 * @param model
