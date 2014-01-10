@@ -9,12 +9,6 @@ public class Mail {
 	public void setDestinataries(ArrayList<String> destinataries) {
 		this.destinataries = destinataries;
 	}
-	public String getDestinarary() {
-		return destinarary;
-	}
-	public void setDestinarary(String destinarary) {
-		this.destinarary = destinarary;
-	}
 	public String getSubject() {
 		return subject;
 	}
@@ -28,7 +22,6 @@ public class Mail {
 		this.body = body;
 	}
 	private ArrayList<String> destinataries;
-	private String destinarary="";
 	private String subject="";
 	private String body;
 	
