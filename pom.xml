@@ -95,8 +95,7 @@
 				<groupId>org.apache.shiro</groupId>
 				<artifactId>shiro-spring</artifactId>
 				<version>${shiro.version}</version>
-		</dependency>
-		
+		</dependency>		
 		<!-- Java Mail API-->
 		<dependency>
 			<groupId>javax.mail</groupId>
