@@ -3,8 +3,8 @@ package mx.com.prosa.app.mail.controller;
 import mx.com.prosa.app.mail.beans.LoginForm;
 import mx.com.prosa.app.mail.beans.EmailInput;
 import mx.com.prosa.app.mail.beans.User;
-import mx.com.prosa.app.mail.services.AuthenticationServiceImpl;
-import mx.com.prosa.app.mail.services.UserServiceImpl;
+import mx.com.prosa.app.mail.services.impl.AuthenticationServiceImpl;
+import mx.com.prosa.app.mail.services.impl.UserServiceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
