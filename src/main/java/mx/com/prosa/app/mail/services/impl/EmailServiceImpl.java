@@ -31,7 +31,7 @@ public class EmailServiceImpl  implements EmailService {
 	 * Implementation for send single Mail
 	 */
 	@Override
-	public void sendSingleMail(Target target, Message msg,EmailContentType emailContentType ) throws NotificationMailServiceException {
+	public void sendSingleMail(Target target, Message msg, EmailContentType emailContentType ) throws NotificationMailServiceException {
 
 		if (emailContentType.equals(emailContentType.TEXTPLAIN)) {
 			smtpConnector.sendMail(target, "[aBanking]", msg.getContent(), MediaType.TEXT_PLAIN);
