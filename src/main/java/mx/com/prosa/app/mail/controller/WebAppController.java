@@ -62,7 +62,7 @@ public class WebAppController {
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(ModelMap model) {
 		model.addAttribute("loginForm", new LoginForm());
-		return "login";
+		return "mailing_login";
 	}
 
 	/**
@@ -91,6 +91,9 @@ public class WebAppController {
 			model.addAttribute("error", true);
 			model.addAttribute("message", ae.getMessage());
 			return "login";
+		} catch (Exception e) {
+			model.addAttribute("errorMsg", e.getMessage());
+			return "mailing_login";
 		}
 		
 		return "redirect:/mailing";
@@ -119,7 +122,7 @@ public class WebAppController {
 	@RequestMapping(value="/signin", method = RequestMethod.GET)
 	public String getUserForm(ModelMap model) {
 		model.addAttribute("userForm", new User());
-		return "register";
+		return "mailing_register";
 	}
 
 	/**
@@ -137,12 +140,12 @@ public class WebAppController {
 		if(authcService.signin(userForm)){
 			model.addAttribute("infoMsg", "User registered successfully.");
 			model.addAttribute("loginForm", new LoginForm());
-			return "login";
+			return "mailing_login";
 		}
 
 		model.addAttribute("errorMsg", "User no registered.");
 		model.addAttribute("userForm", new User());
-		return "register";
+		return "mailing_register";
 
 	}
 	/**
@@ -156,7 +159,7 @@ public class WebAppController {
 	@RequestMapping(value="/mailing", method = RequestMethod.GET)
 	public String getMailingApp(ModelMap model) {
 		model.addAttribute("saludo", "Jajajjajaja!!");
-		return "mailing2";
+		return "mailing_main";
 	}
 
 
@@ -178,12 +181,6 @@ public class WebAppController {
 		System.out.println(mail.getBody());
 		
 		return "200";
-	}
-
-	@RequestMapping("/login")
-	public String index(Model model) {
-		model.addAttribute("signup", new Signup());
-		return "index";
 	}
 
 
