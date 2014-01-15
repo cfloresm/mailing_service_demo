@@ -66,8 +66,7 @@
 								<div class="control-group" id="mailDestinataryDiv">
 									<label class="control-label" for="email">Email Address</label>
 									<div class="controls">
-										<input type="text" class="input-xxlarge" name="email"
-											id="email">
+										<input type="text" class="input-xxlarge" name="email" id="email">
 									</div>
 								</div>
 
@@ -81,20 +80,18 @@
 								<div class="control-group">
 									<label class="control-label" for="subject">Subject</label>
 									<div class="controls">
-										<input type="text" class="input-xxlarge" name="subject"
-											id="subject">
+										<input type="text" class="input-xxlarge" name="subject"	id="subject">
 									</div>
 								</div>
 								<div class="control-group">
 									<label class="control-label" for="message">Your Message</label>
 									<div class="controls">
-										<textarea class="ckeditor input-xxlarge" name="message" id="message"
-											rows="3"></textarea>
+										<textarea class="ckeditor input-xxlarge" name="message" id="message"></textarea>
 									</div>
 								</div>
 
 								<div class="center_bottom" align="right">
-									<button type="submit" class="btn btn-danger btn-large" onclick="sendData();"> Send Mail</button>
+									<button class="btn btn-danger btn-large" onclick="sendData();"> Send Mail</button>
 								</div>
 
 							</div>
@@ -127,46 +124,12 @@
 	<script type="text/javascript" src="js/polling.js"></script>
 	<!-- Validate Plugin -->
 	<script src="js/jquery.validate.min.js"></script>
-
-	<script type="text/javascript"
-		src="http://js.nicedit.com/nicEdit-latest.js"></script>
-	<script src="js/tinymce/tinymce.min.js"></script>
 	<script src="js/ckeditor/ckeditor.js"></script>
 
 	<script type="text/javascript">
 		$(document).ready(
 				function() {
 					$("#mailSection").hide();
-
-					/* 					$('#email-form').validate(
-					 {
-					 rules : {
-					 email : {
-					 required : true,
-					 email : true
-					 },
-					 subject : {
-					 minlength : 2,
-					 required : true
-					 },
-					 message : {
-					 minlength : 2,
-					 required : true
-					 }
-					 },
-					 highlight : function(element) {
-					 $(element).closest('.control-group')
-					 .removeClass('success').addClass(
-					 'error');
-					 },
-					 success : function(element) {
-					 element.text('OK!').addClass('valid')
-					 .closest('.control-group')
-					 .removeClass('error').addClass(
-					 'success');
-					 }
-					 });
-					 */
 
 					$('#email-form').validate(
 							{
@@ -235,6 +198,7 @@
 			jsonmail.destinataries = mails;
 			jsonmail.subject = document.getElementById("subject").value;
 			jsonmail.body = document.getElementById("message").value;
+
 			console.log(JSON.stringify(jsonmail));
 
 			$.ajax({
