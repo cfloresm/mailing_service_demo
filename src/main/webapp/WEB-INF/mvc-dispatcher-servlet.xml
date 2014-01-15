@@ -1,5 +1,6 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="
         http://www.springframework.org/schema/beans     
@@ -7,9 +8,30 @@
         http://www.springframework.org/schema/context 
         http://www.springframework.org/schema/context/spring-context-3.0.xsd
         http://www.springframework.org/schema/mvc
-        http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+        http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-	<context:component-scan base-package="mx.com.prosa.app.mail.controller" />
+    	<!-- enable autowire -->
+	<context:annotation-config />
+
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<!-- <property name="dataSource" ref="dyn_image_ds"/> -->
+		<property name="persistenceUnitName" value="mailing-persistence-unit" />
+		<property name="persistenceXmlLocation" value="classpath:META-INF/persistence.xml" />
+	</bean>
+	
+	<bean  class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
+
+	<tx:annotation-driven transaction-manager="transactionManager" />
+    
+    
+	<context:component-scan base-package="mx.com.prosa.app.mail.controller,mx.com.prosa.app.mail" />
 
 	<mvc:annotation-driven />
 	
@@ -26,20 +48,26 @@
 			<value>.jsp</value>
 		</property>
 	</bean>
-
+	
 	<bean id="memoryStore" class="java.util.HashMap"/>
 	<bean id="authcService" class="mx.com.prosa.app.mail.services.impl.AuthenticationServiceImpl"/>
 	<bean id="userService" class="mx.com.prosa.app.mail.services.impl.UserServiceImpl" />
 	<bean id="mailingService" class="mx.com.prosa.app.mail.services.impl.EmailServiceImpl" />
 	<bean id="smtpConnector" class="mx.com.prosa.app.mail.connectors.SMTPConnector" />
+<!-- 	<bean id="userDAOimpl" class="mx.com.prosa.app.mail.dao.impl.UserDAOimpl" /> -->
+<!--  	<bean id="serviceUserDAO" class="mx.com.prosa.app.mail.dao.impl.ServiceUserDAOImpl"/>  -->
 	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="locations">
 			<list>
 				<value>classpath:smtp.properties</value>
+				<value>classpath:db.properties</value>
 			</list>
 		</property>
 		<property name="ignoreUnresolvablePlaceholders" value="true"/>
 	</bean>
+	
+	<!-- Shiro -->
+    <import resource="shiro.xml" />
 </beans>
 
 
