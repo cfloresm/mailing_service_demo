@@ -7,6 +7,10 @@ import mx.com.prosa.app.mail.services.impl.AuthenticationServiceImpl;
 import mx.com.prosa.app.mail.services.impl.EmailServiceImpl;
 import mx.com.prosa.app.mail.services.impl.UserServiceImpl;
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -48,7 +52,7 @@ public class WebAppController {
 	 * @return
 	 * 		 login view name
 	 */
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(ModelMap model) {
 		model.addAttribute("loginForm", new LoginForm());
 		return "login";
@@ -67,13 +71,35 @@ public class WebAppController {
 	public String postLogin(
 			@ModelAttribute(value = "loginForm") LoginForm loginForm,
 			ModelMap model) {
+		
+		UsernamePasswordToken token = new UsernamePasswordToken();
+		token.setUsername(loginForm.getUsername());
+		token.setPassword(loginForm.getPassword().toCharArray());
+
+		Subject currentUser = SecurityUtils.getSubject();
+
 		try {
-			authcService.login(loginForm.getUsername(),loginForm.getPassword());
-		} catch (Exception e) {
-			model.addAttribute("errorMsg", e.getMessage());
+			currentUser.login(token);
+		} catch (AuthenticationException ae) {
+			model.addAttribute("error", true);
+			model.addAttribute("message", ae.getMessage());
 			return "login";
 		}
+		
 		return "redirect:/mailing";
+	}
+	
+	/**
+	 * Implement logout method for 
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logout(ModelMap model) {
+		Subject currentUser = SecurityUtils.getSubject();
+		currentUser.logout();
+		model.addAttribute("loginForm", new LoginForm());
+		return "login";
 	}
 	
 	/**
@@ -124,7 +150,6 @@ public class WebAppController {
 	public String getMailingApp(ModelMap model) {
 		model.addAttribute("users", userService.getUserKeys());
 		model.addAttribute("mailInput", new EmailInput());
-		model.addAttribute("saludo", "Jajajjajaja!!");
 		return "mailing";
 	}
 	
