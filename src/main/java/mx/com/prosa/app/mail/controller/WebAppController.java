@@ -2,7 +2,6 @@ package mx.com.prosa.app.mail.controller;
 
 import mx.com.prosa.app.mail.beans.LoginForm;
 import mx.com.prosa.app.mail.beans.Mail;
-import mx.com.prosa.app.mail.beans.Signup;
 import mx.com.prosa.app.mail.beans.User;
 import mx.com.prosa.app.mail.services.impl.AuthenticationServiceImpl;
 import mx.com.prosa.app.mail.services.impl.EmailServiceImpl;
@@ -12,11 +11,11 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -90,7 +89,7 @@ public class WebAppController {
 		} catch (AuthenticationException ae) {
 			model.addAttribute("error", true);
 			model.addAttribute("message", ae.getMessage());
-			return "login";
+			return "maling_login";
 		} catch (Exception e) {
 			model.addAttribute("errorMsg", e.getMessage());
 			return "mailing_login";
@@ -109,7 +108,7 @@ public class WebAppController {
 		Subject currentUser = SecurityUtils.getSubject();
 		currentUser.logout();
 		model.addAttribute("loginForm", new LoginForm());
-		return "login";
+		return "mailing_login";
 	}
 	
 	/**
@@ -164,7 +163,7 @@ public class WebAppController {
 
 
 	@RequestMapping(value="/sendmail", method = RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
-	public  @ResponseBody String postMails(@RequestBody Mail mail) throws JsonProcessingException {
+	public ResponseEntity<String> postMails(@RequestBody Mail mail) throws JsonProcessingException {
 		
 		//YA SE OBTUVIERON LOS DATOS DEL MAIL
 		
@@ -180,7 +179,7 @@ public class WebAppController {
 		System.out.println(mail.getSubject());
 		System.out.println(mail.getBody());
 		
-		return "200";
+		return new ResponseEntity<String>(HttpStatus.OK);
 	}
 
 
