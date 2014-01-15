@@ -60,7 +60,6 @@
 		<property name="locations">
 			<list>
 				<value>classpath:smtp.properties</value>
-				<value>classpath:db.properties</value>
 			</list>
 		</property>
 		<property name="ignoreUnresolvablePlaceholders" value="true"/>
