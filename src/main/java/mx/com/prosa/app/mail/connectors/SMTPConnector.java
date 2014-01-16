@@ -13,7 +13,6 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-import mx.com.prosa.app.mail.beans.Target;
 import mx.com.prosa.app.mail.exceptions.NotificationMailServiceException;
 import mx.com.prosa.app.mail.exceptions.NotificationServiceException;
 
@@ -86,10 +85,9 @@ public class SMTPConnector {
 	 * @throws NotificationMailServiceException
 	 * 			Fault exception
 	 */
-	public void sendMail(Target target, String subject, String msg,
-
-			MediaType mediaType) throws NotificationMailServiceException {
-		String recipient = target.getId();
+	public void sendMail( String subject, String msg,MediaType mediaType) throws NotificationMailServiceException {
+		
+		String recipient = subject;
 		Message message = new MimeMessage(session);
 		InternetAddress from, to;
 

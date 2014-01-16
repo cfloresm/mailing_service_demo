@@ -1,9 +1,8 @@
 package mx.com.prosa.app.mail.services;
 
-import mx.com.prosa.app.mail.beans.EmailContentType;
-import mx.com.prosa.app.mail.beans.Message;
-import mx.com.prosa.app.mail.beans.NotificationTarget;
-import mx.com.prosa.app.mail.beans.Target;
+import java.util.List;
+
+import mx.com.prosa.app.mail.beans.PayloadMessage;
 import mx.com.prosa.app.mail.exceptions.NotificationMailServiceException;
 
 /**
@@ -19,12 +18,12 @@ public interface EmailService {
 	 * @param notificationType
 	 * @throws NotificationMailServiceException
 	 */
-	public void sendSingleMail(Target notificationRequest, Message message, EmailContentType notificationType) throws NotificationMailServiceException;
+	public void sendSingleMail(String subject, PayloadMessage payloadMessage) throws NotificationMailServiceException;
 	
 	/**
 	 * Send batch email 
 	 * @param notificationRequest
 	 * @throws NotificationMailServiceException
 	 */
-	public void sendBatchMail(NotificationTarget notificationRequest) throws NotificationMailServiceException;
+	public void sendBatchMail(List<String> subjects, PayloadMessage payloadMessage) throws NotificationMailServiceException;
 }
