@@ -37,12 +37,6 @@
 
 			</div>
 
-			<div class="site_title_right">
-				<h2>
-					<a href="#">Log Out</a>
-				</h2>
-			</div>
-
 		</div>
 		<!-- end of templatemo_site_title_bar -->
 

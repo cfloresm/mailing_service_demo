@@ -27,7 +27,7 @@
 
 			<div class="site_title_right">
 				<h2>
-					<a href="#">Log Out</a>
+					<a href="logout">Log Out</a>
 				</h2>
 			</div>
 
@@ -203,7 +203,7 @@
 
 			$.ajax({
 				type : "POST",
-				url : "sendmail",
+				url : "/api/sendmail",
 				contentType : "application/json",
 				data : JSON.stringify(jsonmail),
 				//data : "mails="+mails,  //multiple array, just add something like "&b="+b ...
