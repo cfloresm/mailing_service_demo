@@ -72,10 +72,12 @@ public class WebAppController {
 		try {
 			currentUser.login(token);
 		} catch (AuthenticationException ae) {
+			currentUser.logout();
 			model.addAttribute("error", true);
 			model.addAttribute("message", ae.getMessage());
-			return "maling_login";
+			return "mailing_login";
 		} catch (Exception e) {
+			model.addAttribute("error", true);
 			model.addAttribute("errorMsg", e.getMessage());
 			return "mailing_login";
 		}

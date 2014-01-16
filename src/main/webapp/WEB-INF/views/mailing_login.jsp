@@ -70,7 +70,7 @@
 		<div class="control-group">
 		    <div class="controls">
 				<a href="signin">Sign In</a>
-				<button type="submit" value="Log In" class="btn  btn-primary pull-right" >Log In</button>
+				<button type="submit" value="Log In" class="btn btn-danger pull-right" >Log In</button>
 		    </div>
 		</div>
 	</form:form>
