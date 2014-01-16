@@ -1,13 +1,14 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Mailing</title>
 <!-- Bootstrap -->
-<link href="css/bootstrap.css" rel="stylesheet">
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-		<link rel="stylesheet" href="css/bootstrap-responsive.min.css">
-<link href="css/templatemo_style.css" rel="stylesheet" type="text/css" />
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="css/bootstrap-responsive.min.css" rel="stylesheet"
+	type="text/css">
+<link href="css/templatemo_style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 
@@ -47,9 +48,9 @@
 
 				<div class="center">
 
-					<form action="" id="email-form" class="form-horizontal">
+					<form action="" id="email-form" class="form-horizontal"
+						>
 						<fieldset>
-
 							<div class="control-group">
 								<label class="control-label" for="type">Type</label>
 								<div class="controls">
@@ -66,7 +67,8 @@
 								<div class="control-group" id="mailDestinataryDiv">
 									<label class="control-label" for="email">Email Address</label>
 									<div class="controls">
-										<input type="text" class="input-xxlarge" name="email" id="email">
+										<input type="text" class="input-xxlarge" name="email"
+											id="email">
 									</div>
 								</div>
 
@@ -80,25 +82,28 @@
 								<div class="control-group">
 									<label class="control-label" for="subject">Subject</label>
 									<div class="controls">
-										<input type="text" class="input-xxlarge" name="subject"	id="subject">
+										<input type="text" class="input-xxlarge" name="subject"
+											id="subject">
 									</div>
 								</div>
 								<div class="control-group">
 									<label class="control-label" for="message">Your Message</label>
 									<div class="controls">
-										<textarea class="ckeditor input-xxlarge" name="message" id="message"></textarea>
+										<textarea class="ckeditor input-xxlarge" name="message"
+											id="message"></textarea>
 									</div>
 								</div>
 
 								<div class="center_bottom" align="right">
-									<button class="btn btn-danger btn-large" onclick="sendData();"> Send Mail</button>
+									<button type="submit" class="btn btn-danger btn-large">
+										Send Mail</button>
 								</div>
 
 							</div>
 							<!-- end of mailsection -->
 
-				</fieldset>
-				</form>
+						</fieldset>
+					</form>
 				</div>
 				<br />
 			</div>
@@ -127,6 +132,7 @@
 	<script src="js/ckeditor/ckeditor.js"></script>
 
 	<script type="text/javascript">
+		var erros = 0;
 		$(document).ready(
 				function() {
 					$("#mailSection").hide();
@@ -159,9 +165,11 @@
 													'success');
 								}
 							});
-
+					
 				});
 
+		
+		
 		function selectItem() {
 			$("#mailSection").hide();
 			var select = $("#selector").val();
@@ -182,7 +190,55 @@
 				break;
 			}
 		}
+		/* 
+		$(function() {
+			  $("#email-form").on("submit",function(e) {
+			    e.preventDefault(); // cancel the submission
+			    alert("Heyyyyy");
+			  });
+			});
+		 */
+		function sendData2() {
+				var validateObject = $('#email-form').validate(
+						{
+							rules : {
+								email : {
+									required : true,
+									email : true
+								},
+								subject : {
+									minlength : 2,
+									required : true
+								},
+								message : {
+									minlength : 2,
+									required : true
+								}
+							},
+							highlight : function(element) {
+								$(element).closest('.control-group')
+										.removeClass('success').addClass(
+												'error');
+							},
+							success : function(element) {
+								element.text('OK!').addClass('valid')
+										.closest('.control-group')
+										.removeClass('error').addClass(
+												'success');
+							}
+						});
 
+			    var numberOfInvalids = validateObject.numberOfInvalids();
+			    if (numberOfInvalids == 0) {
+			        alert('validate-success');
+			    }
+			    else {
+			        alert('validate-failure');
+			    }    
+
+			 
+			alert("Enviando!!!");
+		}
 		function sendData() {
 			var jsonmail = {};
 
@@ -194,11 +250,10 @@
 				mails.length = 0;
 				mails.push($.trim(destinatary));
 			}
-
 			jsonmail.destinataries = mails;
 			jsonmail.subject = document.getElementById("subject").value;
-			jsonmail.body = document.getElementById("message").value;
-
+			//jsonmail.body = document.getElementById("message").value;
+			jsonmail.body = CKEDITOR.instances['message'].getData()
 			console.log(JSON.stringify(jsonmail));
 
 			$.ajax({
@@ -208,6 +263,7 @@
 				data : JSON.stringify(jsonmail),
 				//data : "mails="+mails,  //multiple array, just add something like "&b="+b ...
 				success : function(response) {
+					console.log(reponse);
 					// do something ... 
 					alery('Sent');
 				},
@@ -215,13 +271,14 @@
 					alert('Error X: ' + e);
 				}
 			});
+			return false;
 		}
 
 		var mails = [];
 		window.onload = function() {
 			var fileInput = document.getElementById('file');
 			//			var fileDisplayArea = document.getElementById('fileDisplayArea');
-
+			mails.length = 0; //limpiando el array
 			fileInput.addEventListener('change',
 					function(e) {
 						var file = fileInput.files[0];

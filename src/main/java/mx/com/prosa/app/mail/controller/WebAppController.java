@@ -1,6 +1,7 @@
 package mx.com.prosa.app.mail.controller;
 
 import mx.com.prosa.app.mail.beans.LoginForm;
+import mx.com.prosa.app.mail.beans.Mail;
 import mx.com.prosa.app.mail.beans.User;
 import mx.com.prosa.app.mail.services.impl.AuthenticationServiceImpl;
 import mx.com.prosa.app.mail.services.impl.UserServiceImpl;
@@ -9,10 +10,15 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
+import org.codehaus.jackson.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -148,5 +154,24 @@ public class WebAppController {
 		return "mailing_main";
 	}
 
+	@RequestMapping(value="/sendmail", method = RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<String> postMails(@RequestBody Mail mail) throws JsonProcessingException {
+		
+		//YA SE OBTUVIERON LOS DATOS DEL MAIL
+		
+//		System.out.println();
+//		System.out.println(mail.getDestinatary());
+//		System.out.println(mail.getSubject());
+//		System.out.println(mail.getBody());
+
+		for(String destinatary : mail.getDestinataries()){
+		    System.out.println(destinatary);
+		}
+		
+		System.out.println(mail.getSubject());
+		System.out.println(mail.getBody());
+		
+		return new ResponseEntity<String>("OK", HttpStatus.OK);
+	}
 
 }
