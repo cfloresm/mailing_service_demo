@@ -9,7 +9,9 @@
 <link href="css/bootstrap-responsive.min.css" rel="stylesheet"
 	type="text/css">
 <link href="css/templatemo_style.css" rel="stylesheet" type="text/css">
-</head>
+
+<link href="js/fancybox/jquery.fancybox.css"
+	rel="stylesheet" type="text/css">
 <body>
 
 	<div id="templatemo_site_title_bar_wrapper">
@@ -48,8 +50,7 @@
 
 				<div class="center">
 
-					<form action="" id="email-form" class="form-horizontal"
-						>
+					<form id="email-form" class="form-horizontal">
 						<fieldset>
 							<div class="control-group">
 								<label class="control-label" for="type">Type</label>
@@ -95,8 +96,7 @@
 								</div>
 
 								<div class="center_bottom" align="right">
-									<button type="submit" class="btn btn-danger btn-large">
-										Send Mail</button>
+									<button class="btn btn-danger btn-large">Send Mail</button>
 								</div>
 
 							</div>
@@ -104,6 +104,7 @@
 
 						</fieldset>
 					</form>
+
 				</div>
 				<br />
 			</div>
@@ -123,6 +124,22 @@
 		<!-- end of footer -->
 	</div>
 
+
+	<!-- ALERT MESSAGES -->
+	<div id="confirm" align="center" class="center_alert" style="display: none;">
+		<p class="title"></p>
+		<img
+			src="images/flat-mail-icon_ok.png">
+		<br /> <input class="btn btn-danger btn-large confirm yes" value="CONTINUE" />
+	</div>
+
+	<div id="error" align="center" class="center_alert_error" style="display: none;">
+		<p class="title"></p>
+		<img
+			src="images/flat-mail-icon_error.png">
+		<br /> <input class="btn btn-danger btn-large confirm yes" value="CONTINUE" />
+	</div>
+
 	<script type="text/javascript" src="js/jquery-1.8.1.min.js"></script>
 	<script type="text/javascript" src="js/app.js"></script>
 	<script type="text/javascript" src="js/ajaxRequest.js"></script>
@@ -130,6 +147,7 @@
 	<!-- Validate Plugin -->
 	<script src="js/jquery.validate.min.js"></script>
 	<script src="js/ckeditor/ckeditor.js"></script>
+	<script src="js/fancybox/jquery.fancybox.js"></script>
 
 	<script type="text/javascript">
 		var erros = 0;
@@ -165,11 +183,14 @@
 													'success');
 								}
 							});
-					
+
+					$('#email-form').bind("keypress", function(e) {
+						if (e.keyCode == 13) {
+							return false;
+						}
+					});
 				});
 
-		
-		
 		function selectItem() {
 			$("#mailSection").hide();
 			var select = $("#selector").val();
@@ -190,55 +211,13 @@
 				break;
 			}
 		}
-		/* 
 		$(function() {
-			  $("#email-form").on("submit",function(e) {
-			    e.preventDefault(); // cancel the submission
-			    alert("Heyyyyy");
-			  });
+			$("#email-form").on("submit", function(e) {
+				e.preventDefault(); // cancel the submission
+				sendData();
 			});
-		 */
-		function sendData2() {
-				var validateObject = $('#email-form').validate(
-						{
-							rules : {
-								email : {
-									required : true,
-									email : true
-								},
-								subject : {
-									minlength : 2,
-									required : true
-								},
-								message : {
-									minlength : 2,
-									required : true
-								}
-							},
-							highlight : function(element) {
-								$(element).closest('.control-group')
-										.removeClass('success').addClass(
-												'error');
-							},
-							success : function(element) {
-								element.text('OK!').addClass('valid')
-										.closest('.control-group')
-										.removeClass('error').addClass(
-												'success');
-							}
-						});
+		});
 
-			    var numberOfInvalids = validateObject.numberOfInvalids();
-			    if (numberOfInvalids == 0) {
-			        alert('validate-success');
-			    }
-			    else {
-			        alert('validate-failure');
-			    }    
-
-			 
-			alert("Enviando!!!");
-		}
 		function sendData() {
 			var jsonmail = {};
 
@@ -254,26 +233,87 @@
 			jsonmail.subject = document.getElementById("subject").value;
 			//jsonmail.body = document.getElementById("message").value;
 			jsonmail.body = CKEDITOR.instances['message'].getData()
-			console.log(JSON.stringify(jsonmail));
+
+			var jsonstring = JSON.stringify(jsonmail);
+			console.log(jsonstring);
+
+			//alert(jsonstring);
 
 			$.ajax({
+				url : "api/sendmail",
 				type : "POST",
-				url : "/api/sendmail",
 				contentType : "application/json",
-				data : JSON.stringify(jsonmail),
-				//data : "mails="+mails,  //multiple array, just add something like "&b="+b ...
-				success : function(response) {
-					console.log(reponse);
-					// do something ... 
-					alery('Sent');
+				data : jsonstring,
+				success : function(data) {
+					console.log(data);
+
+					confirm("MAIL SENT!", true, function(resp) {
+						self.location="mailing";
+					});
 				},
-				error : function(e) {
-					alert('Error X: ' + e);
+				error : function(error) {
+					console.log("Error:");
+					console.log(error);
+				
+					confirmError("SENDING ERROR!!", true, function(resp) {
+						
+					});
 				}
 			});
-			return false;
+
+		};
+
+		function sendData2() {
+			confirmError("SENDING MAIL!", true, function(resp) {
+				self.location="mailing";
+			});
 		}
 
+		function confirm(msg, modal, callback) {
+			$.fancybox("#confirm", {
+				modal : modal,
+				beforeShow : function() {
+					$(".title").html(msg);
+				},
+				afterShow : function() {
+					$(".confirm").on("click", function(event) {
+						if ($(event.target).is(".yes")) {
+							ret = true;
+						} else if ($(event.target).is(".no")) {
+							ret = false;
+						}
+						$.fancybox.close();
+					});
+				},
+				afterClose : function() {
+					callback.call(this, ret);
+				}
+			});
+		};
+
+		function confirmError(msg, modal, callback) {
+			$.fancybox("#error", {
+				modal : modal,
+				beforeShow : function() {
+					$(".title").html(msg);
+				},
+				afterShow : function() {
+					$(".confirm").on("click", function(event) {
+						if ($(event.target).is(".yes")) {
+							ret = true;
+						} else if ($(event.target).is(".no")) {
+							ret = false;
+						}
+						$.fancybox.close();
+					});
+				},
+				afterClose : function() {
+					callback.call(this, ret);
+				}
+			});
+		};
+
+		
 		var mails = [];
 		window.onload = function() {
 			var fileInput = document.getElementById('file');

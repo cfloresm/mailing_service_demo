@@ -393,3 +393,19 @@ label.error {
   padding: 2px 8px;
   margin-top: 2px;
 }
+
+.center_alert{
+	padding: 20px;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 26px;
+	color: #ffffff;
+    background: #19841b;
+}
+
+.center_alert_error{
+	padding: 20px;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 26px;
+	color: #ffffff;
+    background: #c71c0b;
+}
