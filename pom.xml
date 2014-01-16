@@ -17,12 +17,6 @@
 	</properties>
 
 	<dependencies>
-		<!-- SendGrid dependencies -->
-		<dependency>
-			<groupId>com.sendgrid</groupId>
-			<artifactId>sendgrid-java</artifactId>
-			<version>0.1.2</version>
-		</dependency>
 
 		<!-- Spring 3 dependencies -->
 		<dependency>
