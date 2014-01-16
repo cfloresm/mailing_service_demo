@@ -1,7 +1,5 @@
 package mx.com.prosa.app.mail.controller;
 
-import java.util.List;
-
 import mx.com.prosa.app.mail.beans.EmailContentType;
 import mx.com.prosa.app.mail.beans.Mail;
 import mx.com.prosa.app.mail.beans.PayloadMessage;

@@ -31,7 +31,7 @@
 	<tx:annotation-driven transaction-manager="transactionManager" />
     
     
-	<context:component-scan base-package="mx.com.prosa.app.mail.controller,mx.com.prosa.app.mail" />
+	<context:component-scan base-package="mx.com.prosa.app.mail.controller,mx.com.prosa.app.mail.dao" />
 
 	<mvc:annotation-driven />
 	
