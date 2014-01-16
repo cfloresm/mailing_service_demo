@@ -22,7 +22,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
  * @author carlos
  *
  */
-@Controller("/api")
+@Controller
+@RequestMapping("/api")
 public class ApiController {
 
 	/**
@@ -42,6 +43,7 @@ public class ApiController {
 				
 		PayloadMessage payloadMessage =  new PayloadMessage();
 		payloadMessage.setSubject(mail.getSubject());
+		payloadMessage.setRecipients(mail.getDestinataries());
 		payloadMessage.setMessage(mail.getBody());
 		payloadMessage.setEmailContentType(EmailContentType.TEXTPLAIN);
 
