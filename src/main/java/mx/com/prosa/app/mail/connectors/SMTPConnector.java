@@ -1,11 +1,13 @@
 package mx.com.prosa.app.mail.connectors;
 
+import java.util.List;
 import java.util.Properties;
 import java.util.logging.Logger;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.mail.Message;
+import javax.mail.Message.RecipientType;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
@@ -76,7 +78,7 @@ public class SMTPConnector {
 	 * Generic method for send mail
 	 * @param target
 	 * 			
-	 * @param subject
+	 * @param recipients
 	 * 			Receiver user email
 	 * @param msg
 	 * 			Message content 
@@ -85,19 +87,18 @@ public class SMTPConnector {
 	 * @throws NotificationMailServiceException
 	 * 			Fault exception
 	 */
-	public void sendMail( String subject, String msg,MediaType mediaType) throws NotificationMailServiceException {
+	public void sendMail( String subject ,String recipent, String msg,MediaType mediaType) throws NotificationMailServiceException {
 		
-		String recipient = subject;
 		Message message = new MimeMessage(session);
 		InternetAddress from, to;
 
 		try {
 
 			from = new InternetAddress(mailSmtpUser);
-			to = new InternetAddress(recipient);
-
+			to = new InternetAddress(recipent);
+			
 		} catch (MessagingException e) {
-			LOG.info("Exception [AddressException] : [" + recipient + "|"
+			LOG.info("Exception [AddressException] : [" + recipent + "|"
 					+ mailSmtpUser + "] = " + e);
 			NotificationServiceException statusMessage = new NotificationServiceException();
 			statusMessage.setCode(400);
@@ -125,6 +126,47 @@ public class SMTPConnector {
 		}
 	}
 	
+	
+	
+	public void sendBatchMail( String subject ,List<String> recipents, String msg,MediaType mediaType) throws NotificationMailServiceException {
+		
+		Message message = new MimeMessage(session);
+		InternetAddress from;
+
+		try {
+
+			from = new InternetAddress(mailSmtpUser);
+			
+		} catch (MessagingException e) {
+			LOG.info("Exception [AddressException] : " + "|"
+					+ mailSmtpUser + "] = " + e);
+			NotificationServiceException statusMessage = new NotificationServiceException();
+			statusMessage.setCode(400);
+			statusMessage.setMessage("Email address bad syntax.");
+			throw new NotificationMailServiceException(
+					"Bad syntax exception", statusMessage);
+		}
+
+		try {
+
+			message.setFrom(from);
+			for(String recipient : recipents){
+				message.addRecipient(RecipientType.TO, new InternetAddress(recipient));
+			}
+			message.setSubject(subject);
+			message.setContent(msg, mediaType.toString() + "; charset=utf-8");
+
+			Transport.send(message);
+
+		} catch (MessagingException e) {
+			LOG.info("Exception [MessagingException] : " + e);
+			NotificationServiceException statusMessage = new NotificationServiceException();
+			statusMessage.setCode(500);
+			statusMessage.setMessage("Email Server unreach.");
+			throw new NotificationMailServiceException(
+					"Email Server exception", statusMessage);
+		}
+	}
 	/**
 	 * Clear session instance
 	 */

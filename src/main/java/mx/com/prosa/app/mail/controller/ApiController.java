@@ -43,22 +43,15 @@ public class ApiController {
 	public ResponseEntity<String> postMails(@RequestBody Mail mail) throws JsonProcessingException {
 				
 		PayloadMessage payloadMessage =  new PayloadMessage();
+		payloadMessage.setSubject(mail.getSubject());
 		payloadMessage.setMessage(mail.getBody());
 		payloadMessage.setEmailContentType(EmailContentType.TEXTPLAIN);
 
-		if(mail.getDestinataries().size() > 1){
-			List<String> subjects = mail.getDestinataries();
-			try {
-				mailingService.sendBatchMail(subjects, payloadMessage);
-			} catch (NotificationMailServiceException e) {
-				return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
-			}
-		} else
-			try {
-				mailingService.sendSingleMail(mail.getDestinataries().get(0), payloadMessage);
-			} catch (NotificationMailServiceException e) {
-				return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
-			}
+		try {
+			mailingService.sendMail(payloadMessage);
+		} catch (NotificationMailServiceException e) {
+			return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 
 		return new ResponseEntity<String>(HttpStatus.OK);
 	}

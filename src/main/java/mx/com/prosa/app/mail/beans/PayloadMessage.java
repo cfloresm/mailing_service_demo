@@ -1,23 +1,36 @@
 package mx.com.prosa.app.mail.beans;
 
+import java.util.List;
+
 /**
  * 
  * @author carlos
  *
  */
 public class PayloadMessage {
-	String sender;
+	List<String> recipients;
+	
+	String  subject;
 	
 	String message;
 	
 	EmailContentType emailContentType;
 
-	public String getSender() {
-		return sender;
+
+	public String getSubject() {
+		return subject;
 	}
 
-	public void setSender(String sender) {
-		this.sender = sender;
+	public void setSubject(String subject) {
+		this.subject = subject;
+	}
+
+	public List<String> getRecipients() {
+		return recipients;
+	}
+
+	public void setRecipients(List<String> recipients) {
+		this.recipients = recipients;
 	}
 
 	public String getMessage() {

@@ -18,12 +18,6 @@ public interface EmailService {
 	 * @param notificationType
 	 * @throws NotificationMailServiceException
 	 */
-	public void sendSingleMail(String subject, PayloadMessage payloadMessage) throws NotificationMailServiceException;
+	public void sendMail(PayloadMessage payloadMessage) throws NotificationMailServiceException;
 	
-	/**
-	 * Send batch email 
-	 * @param notificationRequest
-	 * @throws NotificationMailServiceException
-	 */
-	public void sendBatchMail(List<String> subjects, PayloadMessage payloadMessage) throws NotificationMailServiceException;
 }
