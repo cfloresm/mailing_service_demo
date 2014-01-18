@@ -1,7 +1,6 @@
 package mx.com.prosa.app.mail.controller;
 
 import mx.com.prosa.app.mail.beans.EmailContentType;
-import mx.com.prosa.app.mail.beans.Mail;
 import mx.com.prosa.app.mail.beans.PayloadMessage;
 import mx.com.prosa.app.mail.exceptions.NotificationMailServiceException;
 import mx.com.prosa.app.mail.services.impl.EmailServiceImpl;
@@ -39,12 +38,8 @@ public class ApiController {
      * @throws JsonProcessingException
      */
 	@RequestMapping(value="/sendmail", method = RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<String> postMails(@RequestBody Mail mail) throws JsonProcessingException {
+	public ResponseEntity<String> postMails(@RequestBody PayloadMessage payloadMessage) throws JsonProcessingException {
 				
-		PayloadMessage payloadMessage =  new PayloadMessage();
-		payloadMessage.setSubject(mail.getSubject());
-		payloadMessage.setRecipients(mail.getDestinataries());
-		payloadMessage.setMessage(mail.getBody());
 		payloadMessage.setEmailContentType(EmailContentType.TEXTPLAIN);
 
 		try {

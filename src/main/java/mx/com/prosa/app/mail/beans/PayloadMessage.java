@@ -1,5 +1,6 @@
 package mx.com.prosa.app.mail.beans;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -8,7 +9,7 @@ import java.util.List;
  *
  */
 public class PayloadMessage {
-	List<String> recipients;
+	List<String> recipients = new ArrayList<String>();
 	
 	String  subject;
 	
