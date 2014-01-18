@@ -19,7 +19,7 @@
 	text-align: center;
 }
 </style>
-<title>Log In</title>
+<title>Registro</title>
 </head>
 <body onload='document.loginForm.username.focus();'>
 
@@ -56,23 +56,23 @@
 					<form:form class="form-signin" action="user" name="userForm"
 						modelAttribute="userForm" method='post' accept-charset='UTF-8'>
 						<div class="control-group">
-							<label class="control-label" for="inputEmail">Email</label>
+							<label class="control-label" for="inputEmail">Correo</label>
 							<div class="controls">
 								<form:input path="email" name="email" type="text"
-									placeholder="Email" />
+									placeholder="Correo" />
 								<br />
 							</div>
 						</div>
 						<div class="control-group">
-							<label class="control-label" for="inputUsername">Username</label>
+							<label class="control-label" for="inputUsername">Nombre de usuario</label>
 							<div class="controls">
 								<form:input path="username" name="username" type="text"
-									placeholder="Username" />
+									placeholder="Nombre" />
 								<br />
 							</div>
 						</div>
 						<div class="control-group">
-							<label class="control-label" for="inputPassword">Password</label>
+							<label class="control-label" for="inputPassword">Contraseña</label>
 							<div class="controls">
 								<form:input path="password" name="password" type="password"
 									placeholder="Password" />
@@ -81,10 +81,8 @@
 						</div>
 						<div class="control-group">
 							<div class="controls">
-							<a href="login">Cancel</a>
-							
-								<button type="submit" class="btn  btn-danger pull-right">Sign
-									In</button>
+							<a href="login">Cancelar</a>
+								<button type="submit" class="btn  btn-danger pull-right">Registrarse</button>
 							</div>
 						</div>
 					</form:form>
@@ -106,7 +104,6 @@
 		<div id="templatemo_footer"></div>
 		<!-- end of footer -->
 	</div>
-
 
 	<script type="text/javascript" src="js/jquery-1.8.1.min.js"></script>
 

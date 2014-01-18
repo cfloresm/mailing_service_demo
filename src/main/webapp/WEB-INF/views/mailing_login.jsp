@@ -19,7 +19,7 @@
 	text-align: center;
 }
 </style>
-<title>Log In</title>
+<title>Acceder</title>
 </head>
 <body onload='document.loginForm.username.focus();'>
 
@@ -69,26 +69,26 @@
 								</div>
 							</c:if>
 							<div class="control-group">
-								<label class="control-label" for="inputEmail">Email</label>
+								<label class="control-label" for="inputEmail">Correo</label>
 								<div class="controls">
 									<form:input path="username" name="username" type="text"
-										placeholder="Email" />
+										placeholder="Correo" />
 									<br />
 								</div>
 							</div>
 							<div class="control-group">
-								<label class="control-label" for="inputPassword">Password</label>
+								<label class="control-label" for="inputPassword">Contraseña</label>
 								<div class="controls">
 									<form:input path="password" name="password" type="password"
-										placeholder="Password" />
+										placeholder="Contraseña" />
 									<br />
 								</div>
 							</div>
 							<div class="control-group">
 								<div class="controls">
-									<a href="signin">Sign In</a>
+									<a href="signin">Registrarse</a>
 									<button type="submit" value="Log In"
-										class="btn btn-danger pull-right">Log In</button>
+										class="btn btn-danger pull-right">Entrar</button>
 								</div>
 							</div>
 						</form:form>
