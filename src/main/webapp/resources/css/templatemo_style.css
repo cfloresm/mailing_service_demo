@@ -409,3 +409,11 @@ label.error {
 	color: #ffffff;
     background: #c71c0b;
 }
+
+.center_loading{
+	padding: 20px;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 26px;
+	color : #000000;
+    background: #ffffff;
+}
