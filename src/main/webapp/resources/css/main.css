@@ -5,10 +5,9 @@ body {
 
 .form-signin {
   max-width: 225px;
-  padding: 19px 29px 29px ;
-  margin: 0 auto 20px;
-  background-color: #fff;
-  border: 1px solid #e5e5e5;
+  padding: 30px;
+  margin:0 auto;
+  background-color: #DB988B;
   -webkit-border-radius: 5px;
      -moz-border-radius: 5px;
           border-radius: 5px;
@@ -16,6 +15,21 @@ body {
      -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
           box-shadow: 0 1px 2px rgba(0,0,0,.05);
 }
+
+.form-email {
+  max-width: 700px;
+  padding: 20px ;
+  margin:0 auto;
+  background-color: #DB988B;
+  -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+          border-radius: 5px;
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+     -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+          box-shadow: 0 1px 2px rgba(0,0,0,.05);
+}
+.form { text-align: left; display: inline-block; padding: 20px; width: auto;  background: #FAFAFA;}
+
 .form-signin .form-signin-heading,
 .form-signin .checkbox {
   margin-bottom: 10px;
@@ -27,6 +41,11 @@ body {
   margin-bottom: 15px;
   padding: 7px 9px;
 }
+
+#content {
+  margin: 70px;
+}
+
 /*   
 .btn-file {
     position: relative;

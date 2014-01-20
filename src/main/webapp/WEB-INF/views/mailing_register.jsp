@@ -44,64 +44,49 @@
 	</div>
 	<!-- end of templatemo_site_title_bar_wrapper -->
 
-	<div id="templatemo_content_wrapper_outter">
+	<div id="content">
 
-		<div id="templatemo_content_wrapper_inner">
-
-			<div id="templatemo_content_top"></div>
-
-			<div id="templatemo_content">
-
-				<div class="center">
-					<form:form class="form-signin" action="user" name="userForm"
-						modelAttribute="userForm" method='post' accept-charset='UTF-8'>
-						<div class="control-group">
-							<label class="control-label" for="inputEmail">Correo</label>
-							<div class="controls">
-								<form:input path="email" name="email" type="text"
-									placeholder="Correo" />
-								<br />
-							</div>
-						</div>
-						<div class="control-group">
-							<label class="control-label" for="inputUsername">Nombre de usuario</label>
-							<div class="controls">
-								<form:input path="username" name="username" type="text"
-									placeholder="Nombre" />
-								<br />
-							</div>
-						</div>
-						<div class="control-group">
-							<label class="control-label" for="inputPassword">Contraseña</label>
-							<div class="controls">
-								<form:input path="password" name="password" type="password"
-									placeholder="Password" />
-								<br />
-							</div>
-						</div>
-						<div class="control-group">
-							<div class="controls">
-							<a href="login">Cancelar</a>
-								<button type="submit" class="btn  btn-danger pull-right">Registrarse</button>
-							</div>
-						</div>
-					</form:form>
-					<br />
+		<div class="center">
+			<form:form class="form-signin" action="user" name="userForm"
+				modelAttribute="userForm" method='post' accept-charset='UTF-8'>
+				<div class="control-group">
+					<div class="controls">
+						<form:input path="email" name="email" type="text"
+							placeholder="Correo" />
+						<br />
+					</div>
 				</div>
-			</div>
-			<!-- end of templatemo_content -->
-
-			<div id="templatemo_content_bottom"></div>
-
+				<div class="control-group">
+					<div class="controls">
+						<form:input path="username" name="username" type="text"
+							placeholder="Nombre" />
+						<br />
+					</div>
+				</div>
+				<div class="control-group">
+					<div class="controls">
+						<form:input path="password" name="password" type="password"
+							placeholder="Password" />
+						<br />
+					</div>
+				</div>
+				<div class="control-group">
+					<div class="controls">
+						<a href="login">Cancelar</a>
+						<button type="submit" class="btn  btn-danger pull-right">Registrarse</button>
+					</div>
+				</div>
+			</form:form>
+			<br />
 		</div>
-		<!-- end of templatemo_content_wrapper_inner -->
-
 	</div>
-	<!-- end of templatemo_content_wrapper_outter -->
+	<!-- end of templatemo_content -->
 
-	<div id="templatemo_footer_wrapper">
+	<div id="_content_bottom"></div>
 
-		<div id="templatemo_footer"></div>
+	<div id="footer_wrapper">
+
+		<div id="footer"></div>
 		<!-- end of footer -->
 	</div>
 

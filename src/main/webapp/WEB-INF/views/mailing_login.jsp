@@ -44,75 +44,60 @@
 	</div>
 	<!-- end of templatemo_site_title_bar_wrapper -->
 
-	<div id="templatemo_content_wrapper_outter">
+	<div id="content">
 
-		<div id="templatemo_content_wrapper_inner">
-
-			<div id="templatemo_content_top"></div>
-
-			<div id="templatemo_content">
-
-				<div class="center">
-						<form:form class="form-signin" action="authenticate"
-							name="loginForm" modelAttribute="loginForm" method='post'
-							accept-charset='UTF-8'>
-							<c:if test="${not empty errorMsg }">
-								<div class="alert alert-error">
-									<c:out value="${errorMsg}"></c:out>
-									<br>
-								</div>
-							</c:if>
-							<c:if test="${not empty infoMsg }">
-								<div class="alert alert-success">
-									<c:out value="${infoMsg}"></c:out>
-									<br>
-								</div>
-							</c:if>
-							<div class="control-group">
-								<label class="control-label" for="inputEmail">Correo</label>
-								<div class="controls">
-									<form:input path="username" name="username" type="text"
-										placeholder="Correo" />
-									<br />
-								</div>
-							</div>
-							<div class="control-group">
-								<label class="control-label" for="inputPassword">Contraseña</label>
-								<div class="controls">
-									<form:input path="password" name="password" type="password"
-										placeholder="Contraseña" />
-									<br />
-								</div>
-							</div>
-							<div class="control-group">
-								<div class="controls">
-									<a href="signin">Registrarse</a>
-									<button type="submit" value="Log In"
-										class="btn btn-danger pull-right">Entrar</button>
-								</div>
-							</div>
-						</form:form>
-					<br />
+<!-- 		<div class="center"> -->
+			<form:form class="form-signin" action="authenticate" name="loginForm"
+				modelAttribute="loginForm" method='post' accept-charset='UTF-8'>
+				<c:if test="${not empty errorMsg }">
+					<div class="alert alert-error">
+						<c:out value="${errorMsg}"></c:out>
+						<br>
+					</div>
+				</c:if>
+				<c:if test="${not empty infoMsg }">
+					<div class="alert alert-success">
+						<c:out value="${infoMsg}"></c:out>
+						<br>
+					</div>
+				</c:if>
+				<div class="control-group">
+					<div class="controls">
+						<form:input path="username" name="username" type="text"
+							placeholder="Correo" />
+						<br />
 					</div>
 				</div>
-				<!-- end of templatemo_content -->
+				<div class="control-group">
+					<div class="controls">
+						<form:input path="password" name="password" type="password"
+							placeholder="Contraseña" />
+						<br />
+					</div>
+				</div>
+				<div class="control-group">
+					<div class="controls">
+						<a href="signin">Registrarse</a>
+						<button type="submit" value="Log In"
+							class="btn btn-danger pull-right">Entrar</button>
+					</div>
+				</div>
+			</form:form>
+			<br />
+<!-- 		</div> -->
+	</div>
+	<!-- end of templatemo_content -->
 
-				<div id="templatemo_content_bottom"></div>
-
-			</div>
-			<!-- end of templatemo_content_wrapper_inner -->
-
-		</div>
-		<!-- end of templatemo_content_wrapper_outter -->
+	<div id="content_bottom"></div>
 
 
-		<div id="templatemo_footer_wrapper">
+	<div id="footer_wrapper">
 
-			<div id="templatemo_footer"></div>
-			<!-- end of footer -->
-		</div>
+		<div id="footer"></div>
+		<!-- end of footer -->
+	</div>
 
 
-		<script type="text/javascript" src="js/jquery-1.8.1.min.js"></script>
+	<script type="text/javascript" src="js/jquery-1.8.1.min.js"></script>
 </body>
 </html>

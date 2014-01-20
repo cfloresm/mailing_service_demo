@@ -6,8 +6,8 @@
 <!-- Bootstrap -->
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
 <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
-<link href="css/bootstrap-responsive.min.css" rel="styleshgoogeet"
-	type="text/css">
+<link href="css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css">
+<link href="css/main.css" rel="stylesheet" type="text/css">
 <link href="css/templatemo_style.css" rel="stylesheet" type="text/css">
 <link href="js/fancybox/jquery.fancybox.css" rel="stylesheet"
 	type="text/css">
@@ -38,96 +38,71 @@
 	</div>
 	<!-- end of templatemo_site_title_bar_wrapper -->
 
-	<div id="templatemo_content_wrapper_outter">
 
-		<div id="templatemo_content_wrapper_inner">
+	<div class="center">
 
-			<div id="templatemo_content_top"></div>
+		<form id="form-email" class="form-email">
+			<fieldset>
+				<div class="control-group">
+					<div class="controls">
+						<select id="selector" class="selectpicker" onchange="selectItem()">
+							<option value=""></option>
+							<option value="1">Simple Mail</option>
+							<option value="2">Batch Mail</option>
+						</select>
+					</div>
+				</div>
+				<div id="mailSection" style="display: none;">
 
-			<div id="templatemo_content">
+					<div class="control-group" id="mailDestinataryDiv">
+						<div class="controls">
+							<input type="text" class="input-xxlarge" name="email" id="email" placeholder="Destinatario" >
+						</div>
+					</div>
 
-				<div class="center">
-
-					<form id="email-form" class="form-horizontal">
-						<fieldset>
-							<div class="control-group">
-								<label class="control-label" for="type">Tipo</label>
-								<div class="controls">
-									<select id="selector" class="selectpicker"
-										onchange="selectItem()">
-										<option value=""></option>
-										<option value="1">Simple Mail</option>
-										<option value="2">Batch Mail</option>
-									</select>
-								</div>
-							</div>
-							<div id="mailSection" style="display: none;">
-
-								<div class="control-group" id="mailDestinataryDiv">
-									<label class="control-label" for="email">Destinatario</label>
-									<div class="controls">
-										<input type="text" class="input-xxlarge" name="email"
-											id="email">
-									</div>
-								</div>
-
-								<div class="control-group" id="csvFileChooser">
-
-									<label class="control-label" for="txtfile">Destinatarios</label>
-									<div class="controls">
-
-										<input type="file" name="file" style="display: none;" id="file" />
-										<div class="input-append">
-											<!-- 
+					<div class="control-group" id="csvFileChooser">
+						<div class="controls">
+							<input type="file" name="file" style="display: none;" id="file"  />
+							<div class="input-append">
+								<!-- 
 											-->
-											<a id="fileButton" class="btn btn-warning" onclick="$('#file').click();">Seleccione archivo</a>
-											 <input type="text" name="subfile" id="subfile"	class="input-xlarge" readonly> 
-
-										</div>
- 									</div>
-								</div>
-								<div class="control-group">
-									<label class="control-label" for="subject">Asunto</label>
-									<div class="controls">
-										<input type="text" class="input-xxlarge" name="subject"
-											id="subject">
-									</div>
-								</div>
-								<div class="control-group">
-									<label class="control-label" for="message">Mensaje</label>
-									<div class="controls">
-										<textarea class="ckeditor input-xxlarge" name="message"
-											id="message"></textarea>
-									</div>
-								</div>
-
-								<div class="center_bottom" align="right">
-									<button class="btn btn-danger btn-large">ENVIAR</button>
-								</div>
+								<a id="fileButton" class="btn btn-warning" 
+									onclick="$('#file').click();">Seleccione archivo</a> 
+									<input placeholder="Destinatarios"
+									type="text" name="subfile" id="subfile" class="input-xlarge"
+									readonly>
 
 							</div>
-							<!-- end of mailsection -->
+						</div>
+					</div>
+					<div class="control-group">
+						<div class="controls">
+							<input type="text" class="input-xxlarge" name="subject"
+								id="subject" placeholder="Asunto" >
+						</div>
+					</div>
+					<div class="control-group">
+						<div class="controls">
+							<textarea class="ckeditor input-xxlarge" name="message"
+								id="message" ></textarea>
+						</div>
+					</div>
 
-						</fieldset>
-					</form>
+					<div class="center_bottom" align="right">
+						<button class="btn btn-danger btn-large">Enviar</button>
+					</div>
 
 				</div>
-				<br />
-			</div>
-			<!-- end of templatemo_content -->
+				<!-- end of mailsection -->
 
-			<div id="templatemo_content_bottom"></div>
-
-		</div>
-		<!-- end of templatemo_content_wrapper_inner -->
+			</fieldset>
+		</form>
 
 	</div>
-	<!-- end of templatemo_content_wrapper_outter -->
+	<br />
 
-	<div id="templatemo_footer_wrapper">
+	<div id="footer">
 
-		<div id="templatemo_footer"></div>
-		<!-- end of footer -->
 	</div>
 
 	<!-- ALERT MESSAGES -->
