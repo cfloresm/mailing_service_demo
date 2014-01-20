@@ -23,7 +23,7 @@
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<!-- <property name="dataSource" ref="dyn_image_ds"/> -->
 		<property name="persistenceUnitName" value="mailing-persistence-unit" />
-		<property name="persistenceXmlLocation" value="classpath:META-INF/persistence.xml" />
+		<property name="persistenceXmlLocation" value="classpath:persistence.xml" />
 	</bean>
 	
 	<bean  class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
