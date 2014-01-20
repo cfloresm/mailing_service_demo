@@ -45,25 +45,45 @@ $(document).ready(
 		});
 
 //show/hide batch/single mailing views
-function selectItem() {
-	$("#mailSection").hide();
-	var select = $("#selector").val();
+//function selectItem() {
+//	$("#mailSection").hide();
+//	var select = $("#selector").val();
+//
+//	switch (select) {
+//	case "0":
+//		$("#mailSection").hide();
+//		break;
+//	case "1":
+//		$("#mailSection").show();
+//		$("#mailDestinataryDiv").show();
+//		$("#csvFileChooser").hide();
+//		break;
+//	case "2":
+//		$("#mailSection").show();
+//		$("#csvFileChooser").show();
+//		$("#mailDestinataryDiv").hide();
+//		break;
+//	}
+//}
 
-	switch (select) {
-	case "0":
-		$("#mailSection").hide();
-		break;
-	case "1":
-		$("#mailSection").show();
-		$("#mailDestinataryDiv").show();
-		$("#csvFileChooser").hide();
-		break;
-	case "2":
-		$("#mailSection").show();
-		$("#csvFileChooser").show();
-		$("#mailDestinataryDiv").hide();
-		break;
-	}
+function showSimpleMailing(){
+	$("#mailSection").show();
+	$("#mailDestinataryDiv").show();
+	$("#csvFileChooser").hide();
+	var buttonSimple = $("#btn-simple");
+	var buttonBatch = $("#btn-batch");
+	buttonSimple.addClass('active');
+	buttonBatch.removeClass('active');	
+}
+
+function showBatchMailing(){
+	$("#mailSection").show();
+	$("#csvFileChooser").show();
+	$("#mailDestinataryDiv").hide();
+	var buttonSimple = $("#btn-simple");
+	var buttonBatch = $("#btn-batch");
+	buttonSimple.removeClass('active');
+	buttonBatch.addClass('active');	
 }
 
 //very functional method, cancels the submit on a form
@@ -93,11 +113,14 @@ function prepareData(){
 function sendData() {
 	var jsonmail = {}; //json data to post
 
-	var select = $("#selector").val();
+	//var select = $("#selector").val();
 	var destinatary = document.getElementById("email").value;
+	var buttonSimple = $("#btn-simple");
 
-	if (select == 1) {
-		//SI SE SELECCIONO EL ENVIO SIMPLE SE BORRA EL ARRAY Y SE ENVIA UN SOLO VALOR
+//	if (select == 1) {
+	if(buttonSimple.hasClass('active')){
+	//SI SE SELECCIONO EL ENVIO SIMPLE SE BORRA EL ARRAY Y SE ENVIA UN SOLO VALOR
+		console.log("simple");
 		mails.length = 0;
 		mails.push($.trim(destinatary));
 	}
