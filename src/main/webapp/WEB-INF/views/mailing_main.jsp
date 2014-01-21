@@ -6,13 +6,14 @@
 <!-- Bootstrap -->
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
 <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
-<link href="css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css">
+<link href="css/bootstrap-responsive.min.css" rel="stylesheet"
+	type="text/css">
 <link href="css/main.css" rel="stylesheet" type="text/css">
-<link href="css/bootstrap-responsive.min.css" rel="styleshgoogeet" type="text/css">
 <link href="css/templatemo_style.css" rel="stylesheet" type="text/css">
-<link href="js/fancybox/jquery.fancybox.css" rel="stylesheet" type="text/css">
-
+<link href="js/fancybox/jquery.fancybox.css" rel="stylesheet"
+	type="text/css">
 <body>
+
 	<div id="templatemo_site_title_bar_wrapper">
 
 		<div id="templatemo_site_title_bar">
@@ -38,124 +39,43 @@
 	</div>
 	<!-- end of templatemo_site_title_bar_wrapper -->
 
-<<<<<<< HEAD
-=======
-	<div id="templatemo_content_wrapper_outter">
-
-		<div id="templatemo_content_wrapper_inner">
-
-			<div id="templatemo_content_top"></div>
-
-			<div id="templatemo_content">
-
-				<div class="center">
-
-
-					<form id="email-form" class="form-horizontal">
-						<fieldset>
-							<div class="control-group">
-								<label class="control-label" for="type">Tipo</label>
-								<div class="controls">
-									<div class="btn-group">
-										<button id="btn-simple" type="button"
-											class="btn btn-danger active"
-											onClick="showSimpleMailing()">Simple</button>
-										<button id="btn-batch" type="button"
-											class="btn btn-danger" onClick="showBatchMailing()">Batch</button>
-									</div>
-								</div>
-							</div>
-							<!-- 							
-							<div class="control-group">
-								<label class="control-label" for="type">Tipo</label>
-								<div class="controls">
-									<select id="selector" class="selectpicker"
-										onchange="selectItem()">
-										<option value=""></option>
-										<option value="1">Simple Mail</option>
-										<option value="2">Batch Mail</option>
-									</select>
-								</div>
-							</div>
- -->
-							<div id="mailSection">
-								<div class="control-group" id="mailDestinataryDiv">
-									<label class="control-label" for="email">Destinatario</label>
-									<div class="controls">
-										<input type="text" class="input-xxlarge" name="email"
-											id="email">
-									</div>
-								</div>
-
-								<div class="control-group" id="csvFileChooser" style="display: none;">
->>>>>>> Removed ComboBox for mailing type selection. Added Bootstrap buttons
+	<br />
 
 	<div class="center">
 
-<<<<<<< HEAD
 		<form id="form-email" class="form-email">
 			<fieldset>
+
 				<div class="control-group">
 					<div class="controls">
-						<select id="selector" class="selectpicker" onchange="selectItem()">
-							<option value=""></option>
-							<option value="1">Simple Mail</option>
-							<option value="2">Batch Mail</option>
-						</select>
+						<div class="btn-group">
+							<button id="btn-simple" type="button"
+								class="btn btn-danger active" onClick="showSimpleMailing()">Simple</button>
+							<button id="btn-batch" type="button" class="btn btn-danger"
+								onClick="showBatchMailing()">Batch</button>
+						</div>
 					</div>
 				</div>
-				<div id="mailSection" style="display: none;">
+
+				<div id="mailSection">
 
 					<div class="control-group" id="mailDestinataryDiv">
 						<div class="controls">
-							<input type="text" class="input-xxlarge" name="email" id="email" placeholder="Destinatario" >
+							<input type="text" class="input-xxlarge" name="email" id="email"
+								placeholder="Destinatario">
 						</div>
 					</div>
 
 					<div class="control-group" id="csvFileChooser">
 						<div class="controls">
-							<input type="file" name="file" style="display: none;" id="file"  />
+							<input type="file" name="file" style="display: none;" id="file" />
 							<div class="input-append">
 								<!-- 
 											-->
-								<a id="fileButton" class="btn btn-warning" 
-									onclick="$('#file').click();">Seleccione archivo</a> 
-									<input placeholder="Destinatarios"
-									type="text" name="subfile" id="subfile" class="input-xlarge"
-									readonly>
-=======
-										<input type="file" name="file" style="display: none;"
-											id="file" />
-										<div class="input-append">
-											<!-- 
-											-->
-											<a id="fileButton" class="btn btn-warning"
-												onclick="$('#file').click();">Seleccione archivo</a> <input
-												type="text" name="subfile" id="subfile" class="input-xlarge"
-												readonly>
-
-										</div>
-									</div>
-								</div>
-								<div class="control-group">
-									<label class="control-label" for="subject">Asunto</label>
-									<div class="controls">
-										<input type="text" class="input-xxlarge" name="subject"
-											id="subject">
-									</div>
-								</div>
-								<div class="control-group">
-									<label class="control-label" for="message">Mensaje</label>
-									<div class="controls">
-										<textarea class="ckeditor input-xxlarge" name="message"
-											id="message"></textarea>
-									</div>
-								</div>
-
-								<div class="center_bottom" align="right">
-									<button class="btn btn-danger btn-large">ENVIAR</button>
-								</div>
->>>>>>> Removed ComboBox for mailing type selection. Added Bootstrap buttons
+								<a id="fileButton" class="btn btn-warning"
+									onclick="$('#file').click();">Seleccione archivo</a> <input
+									placeholder="Destinatarios" type="text" name="subfile"
+									id="subfile" class="input-xlarge" readonly>
 
 							</div>
 						</div>
@@ -163,13 +83,13 @@
 					<div class="control-group">
 						<div class="controls">
 							<input type="text" class="input-xxlarge" name="subject"
-								id="subject" placeholder="Asunto" >
+								id="subject" placeholder="Asunto">
 						</div>
 					</div>
 					<div class="control-group">
 						<div class="controls">
 							<textarea class="ckeditor input-xxlarge" name="message"
-								id="message" ></textarea>
+								id="message"></textarea>
 						</div>
 					</div>
 
@@ -186,9 +106,7 @@
 	</div>
 	<br />
 
-	<div id="footer">
-
-	</div>
+	<div id="footer"></div>
 
 	<!-- ALERT MESSAGES -->
 	<div id="question" align="center" class="center_alert"
