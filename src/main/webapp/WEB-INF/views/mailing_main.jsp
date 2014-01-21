@@ -43,7 +43,7 @@
 
 	<div class="center">
 
-		<form id="form-email" class="form-email">
+		<form id="email-form" class="form-email">
 			<fieldset>
 
 				<div class="control-group">
@@ -66,12 +66,10 @@
 						</div>
 					</div>
 
-					<div class="control-group" id="csvFileChooser">
+					<div class="control-group" id="csvFileChooser" style="display: none;">
 						<div class="controls">
-							<input type="file" name="file" style="display: none;" id="file" />
+							<input type="file" name="file" id="file" style="display: none;" accept=".txt"/>
 							<div class="input-append">
-								<!-- 
-											-->
 								<a id="fileButton" class="btn btn-warning"
 									onclick="$('#file').click();">Seleccione archivo</a> <input
 									placeholder="Destinatarios" type="text" name="subfile"
